@@ -1,6 +1,6 @@
 
 export interface TodoState {
-    todos: Array<IToDo>;
+    todos: IToDo[];
     loading: boolean;
     error: null | string;
 }
@@ -8,7 +8,7 @@ export interface TodoState {
 export interface IToDo {
     id: string;
     title: string;
-    task: Array<ITask>;
+    tasks: ITask[] | null;
 }
 
 export interface ITask {
