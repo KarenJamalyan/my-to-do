@@ -7,9 +7,9 @@ import { todoSlice } from '../../store/reducers/todoSilce';
 const AddTodo: React.FC = () => {
 
     const dispatch = useAppDispatch() 
-    const { addTodo } = todoSlice.actions
 
-    const [newTodo, setnewTodo]= useState<string>('')
+    const { addTodo } = todoSlice.actions
+    const [newTodo, setnewTodo] = useState<string>('')
 
     const handleSubmit = (e:React.FormEvent) => {
         e.preventDefault();
@@ -28,7 +28,7 @@ const AddTodo: React.FC = () => {
                     <s.AddInput type="text" name="todoText" value={newTodo} onChange={(e) => {setnewTodo(e.target.value)}} />
                 </label>
                     <s.AddButton type="submit" value="Submit" disabled={!newTodo}>
-                        Add 
+                        Add
                     </s.AddButton>
             </s.Form>
         </>

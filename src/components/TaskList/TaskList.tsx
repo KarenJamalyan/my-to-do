@@ -1,16 +1,20 @@
 import React from 'react';
 import TaskListItem from '../TaskListItem/TaskListItem';
 import * as s from './style';
+import { ITask } from '../../models/models';
 
-const tasks = ['dsfdsf', 'dfsdfdsf', 'dfsdfsdf']
 
-const TaskList: React.FC = () => {
+const tasks = ['dsfdsf', 'dffdsfdfsdfdsf', 'dfsdfsdf']
+
+const TaskList: React.FC<{tasks:ITask[], todoId: string}> = ({tasks, todoId}) => {
     return(
         <s.List>
             {
-                tasks.map((elem, item) => <s.ListItem key= {item} >
-                                            <TaskListItem item= {elem} />
-                                          </s.ListItem> )
+            tasks !== null  &&   tasks.map((elem: ITask) => <s.ListItem key= {elem.id} >
+                                                                <TaskListItem
+                                                                    task = {elem}
+                                                                    todoId = {todoId} />
+                                                            </s.ListItem> )
             }
         </s.List>
     )

@@ -1,13 +1,21 @@
 import React from 'react';
 import { FaTrashAlt, FaPencilAlt, FaRegCheckCircle, FaRegCircle } from 'react-icons/fa';
+import * as s from './style';
+import { ITask } from '../../models/models';
 
-const TaskListItem: React.FC<any> = (item) => {
+
+const TaskListItem: React.FC<{task:ITask, todoId: string}> = ({task, todoId}) => {
     return(
         <>
-            <p>sfdsad</p>
-            <FaTrashAlt />
-            <FaPencilAlt />
-
+            <p>{task.txt}</p>
+            <s.Buttons>
+                <span>
+                    <FaTrashAlt />  
+                </span>
+                <span>
+                    <FaPencilAlt /> 
+                </span>
+            </s.Buttons>
         </>
     )
 }
