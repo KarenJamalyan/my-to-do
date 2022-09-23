@@ -6,8 +6,6 @@ const initialState: TodoState = {
     todos: [
         { id:'000001', title: 'Tasak mek 1', tasks: [{ id: '5454', txt: 'havaqel todu', status: false}] },
         { id:'000002', title: 'Tasak mek 2', tasks: [{ id: '5252', txt: 'havaqel todu', status: false}] },
-        { id:'000003', title: 'Tasak mek 1', tasks: [{ id: '5456', txt: 'havaqel todu', status: false}, { id: '58456', txt: 'havaqel todu 5', status: false}] },
-        { id:'000004', title: 'Tasak mek 2', tasks: [{ id: '5259', txt: 'havaqel todu', status: false}] },
     ],
     error: null,
     editId: null,
@@ -43,15 +41,14 @@ export const todoSlice = createSlice({
         addTask(state, action: PayloadAction<{todoId:string, task:ITask}>) {
             state.todos = state.todos.map((elem) => {
                 if(elem.id === action.payload.todoId){
-                   return { ...elem, tasks: [...elem.tasks, action.payload.task]}
+                   return { ...elem, tasks: [ action.payload.task , ...elem.tasks,]}
                 }else{
                     return elem
                 }    
             })
         },
         editTask(state, action: PayloadAction<{todoId:string, task:ITask}>) {
-
-            const newTodos = state.todos.map((elem) => {
+            state.todos = state.todos.map((elem) => {
                 if(elem.id === action.payload.todoId){
                     const newTask = elem.tasks.map((item: ITask) => (item.id === action.payload.task.id) ? action.payload.task : item )
                     return { ...elem, tasks: newTask };
@@ -59,13 +56,17 @@ export const todoSlice = createSlice({
                     return elem
                 }
             })
-            state.todos = newTodos;
-            
-            
+        },
+        editTaskStatus(state, action: PayloadAction<{todoId:string, task:ITask}>) {
+            state.todos = state.todos.map((elem) => {
+                if(elem.id === action.payload.todoId){
+                    const filterTask = elem.tasks.filter((item: ITask) => item.id !== action.payload.task.id)
+                    return { ...elem, tasks: [...filterTask, action.payload.task ] };
+                }else{
+                    return elem
+                }
+            })
         }
-
-
-
     }
 })
 

@@ -11,7 +11,7 @@ const TaskListItem: React.FC<{task:ITask, todoId: string}> = ({task, todoId}) =>
 
     const {editId} = useAppSelector(state => state.todoReducer)
     const dispatch = useAppDispatch()
-    const { deleteTask, changingId, editTask } = todoSlice.actions
+    const { deleteTask, changingId, editTaskStatus } = todoSlice.actions
     const  txtDecoration = task.status ?  'line-through' : 'none'
     return(
         
@@ -21,13 +21,13 @@ const TaskListItem: React.FC<{task:ITask, todoId: string}> = ({task, todoId}) =>
         :
         <>
         <s.Txt 
-            onClick={() => {dispatch(editTask({ todoId, task:{id: task.id, txt: task.txt, status: !task.status }}))}}
+            onClick={() =>{ !task.status  && dispatch(editTaskStatus({ todoId, task:{id: task.id, txt: task.txt, status: true }}))}}
             style={{textDecoration: txtDecoration }} >
                 {task.txt}
         </s.Txt>
         <s.Buttons>
             <span>
-                <FaPencilAlt onClick={() => {dispatch(changingId(task.id))}} />
+                <FaPencilAlt onClick={() => { !task.status && dispatch(changingId(task.id))}} />
             </span>
             <span>
                 <FaTrashAlt  onClick={() => { !task.status &&  dispatch(deleteTask({ taskId: task.id, todoId: todoId })) }} /> 
