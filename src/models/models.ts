@@ -9,7 +9,7 @@ export interface TodoState {
 export interface IToDo {
     id: string;
     title: string;
-    tasks: any;
+    tasks: ITask[];
 }
 
 export interface ITask {

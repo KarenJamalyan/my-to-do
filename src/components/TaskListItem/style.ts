@@ -13,3 +13,7 @@ export const Buttons = styled.div`
         cursor: pointer;
     }
 `
+
+export const Txt = styled.p`
+    cursor: pointer;
+`

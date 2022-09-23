@@ -5,6 +5,7 @@ export const TopDiv =  styled.div`
     display: flex;
     align-items: center;
     justify-content: space-around;
+    height: 40px;
 `
 
 export const Title = styled.h4`
@@ -33,4 +34,12 @@ export const Icon = styled.span`
     display: flex;
     justify-content: center;
     cursor: pointer;
+`
+
+export const Body = styled.div`
+    display: flex;
+    flex-direction: column;
+    max-height: 250px;
+    overflow: auto
+
 `

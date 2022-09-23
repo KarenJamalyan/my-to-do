@@ -1,28 +1,40 @@
-import React from 'react';
-import { FaTrashAlt, FaPencilAlt, FaRegCheckCircle, FaRegCircle } from 'react-icons/fa';
+import React, {useState} from 'react';
+import { FaTrashAlt, FaPencilAlt} from 'react-icons/fa';
 import * as s from './style';
 import { ITask } from '../../models/models';
-import { useAppDispatch } from '../../hooks/redux';
+import { useAppDispatch, useAppSelector } from '../../hooks/redux';
 import { todoSlice } from '../../store/reducers/todoSilce';
+import EditTask from '../EditTask/EditTask';
 
 
 const TaskListItem: React.FC<{task:ITask, todoId: string}> = ({task, todoId}) => {
 
+    const {editId} = useAppSelector(state => state.todoReducer)
     const dispatch = useAppDispatch()
-    const { deleteTask } = todoSlice.actions
-
+    const { deleteTask, changingId, editTask } = todoSlice.actions
+    const  txtDecoration = task.status ?  'line-through' : 'none'
     return(
+        
+        editId === task.id
+        ?
+        <EditTask  todoId = {todoId } task = {task}/>
+        :
         <>
-            <p>{task.txt}</p>
-            <s.Buttons>
-                <span>
-                    <FaPencilAlt />
-                </span>
-                <span>
-                    <FaTrashAlt  onClick={() => {dispatch(deleteTask({ taskId: task.id, todoId: todoId }))}}    /> 
-                </span>
-            </s.Buttons>
-        </>
+        <s.Txt 
+            onClick={() => {dispatch(editTask({ todoId, task:{id: task.id, txt: task.txt, status: !task.status }}))}}
+            style={{textDecoration: txtDecoration }} >
+                {task.txt}
+        </s.Txt>
+        <s.Buttons>
+            <span>
+                <FaPencilAlt onClick={() => {dispatch(changingId(task.id))}} />
+            </span>
+            <span>
+                <FaTrashAlt  onClick={() => { !task.status &&  dispatch(deleteTask({ taskId: task.id, todoId: todoId })) }} /> 
+            </span>
+        </s.Buttons>
+    </>
+        
     )
 }
 

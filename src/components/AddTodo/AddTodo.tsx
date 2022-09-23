@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState} from 'react';
 import * as s from './style';
 import { useAppDispatch } from '../../hooks/redux';
 import { todoSlice } from '../../store/reducers/todoSilce';
@@ -14,16 +14,14 @@ const AddTodo: React.FC = () => {
     const handleSubmit = (e:React.FormEvent) => {
         e.preventDefault();
         if(!newTodo === false){
-            dispatch(addTodo({ id:String(Date.now()), title:newTodo, tasks: null }));
+            dispatch(addTodo({ id:String(Date.now()), title:newTodo, tasks: [] }));
             setnewTodo('');
         }
     }
     return(
         <>
-            <s.Title>
-                Add ToDo
-            </s.Title>
-            <s.Form onSubmit = {handleSubmit}>
+            <s.Title>Add ToDo</s.Title>
+            <s.Form onSubmit={handleSubmit}>
                 <label htmlFor="todoText">
                     <s.AddInput type="text" name="todoText" value={newTodo} onChange={(e) => {setnewTodo(e.target.value)}} />
                 </label>
