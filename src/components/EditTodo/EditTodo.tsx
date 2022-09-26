@@ -13,7 +13,7 @@ const EditTodo: React.FC<{itemId: string, title: string, tasks: ITask[]}> = ({it
 
     const handleSubmit = (e:React.FormEvent) => {
         e.preventDefault();
-        if(!newTitle === false){
+        if(newTitle){
             dispatch(changeTodo({ id: itemId, title: newTitle, tasks: tasks }));
             dispatch(changingId(null))
         }

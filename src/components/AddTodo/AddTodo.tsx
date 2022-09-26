@@ -13,7 +13,7 @@ const AddTodo: React.FC = () => {
 
     const handleSubmit = (e:React.FormEvent) => {
         e.preventDefault();
-        if(!newTodo === false){
+        if(newTodo){
             dispatch(addTodo({ id:String(Date.now()), title:newTodo, tasks: [] }));
             setnewTodo('');
         }

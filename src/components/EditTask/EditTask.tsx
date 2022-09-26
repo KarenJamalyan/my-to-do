@@ -12,7 +12,7 @@ const EditTask: React.FC< {todoId: string, task: ITask}> = ({ todoId, task }) =>
 
     const handleSubmit = (e:React.FormEvent) => {
         e.preventDefault();
-        if(!newTxt === false){
+        if(newTxt){
             dispatch(editTask({ todoId, task:{id: task.id, txt: newTxt, status: task.status }}));
             dispatch(changingId(null))
         }

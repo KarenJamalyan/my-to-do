@@ -15,7 +15,7 @@ const AddTask: React.FC<{todoId:string}> = ({todoId}) => {
 
     const handleSubmit = (e:React.FormEvent) => {
         e.preventDefault();
-        if(!newTask === false){
+        if(newTask){
             dispatch(addTask({todoId, task:{ id:String(Date.now()), txt:newTask, status: false } } ));
             setnewTask('');
             setshow(false)

@@ -3,10 +3,7 @@ import {createSlice, PayloadAction} from "@reduxjs/toolkit";
 
 
 const initialState: TodoState = {
-    todos: [
-        { id:'000001', title: 'Tasak mek 1', tasks: [{ id: '5454', txt: 'havaqel todu', status: false}] },
-        { id:'000002', title: 'Tasak mek 2', tasks: [{ id: '5252', txt: 'havaqel todu', status: false}] },
-    ],
+    todos: [],
     error: null,
     editId: null,
     loading: false
