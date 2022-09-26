@@ -12,34 +12,34 @@ const TodoLIst: React.FC<{todos:IToDo[]}> = ({todos}) => {
         <s.ToDoContainer>
             <s.secondDiv>
                 <s.ProTitle>in Process</s.ProTitle>
-            {
-                todos.map((item: IToDo) =>  count(item.tasks)!== 100   &&
-                     <s.ItemContainer key={item.id}>
-                        <TodoListItem
-                            itemId={item.id}
-                            title={item.title}
-                            tasks={item.tasks}
-                        />
-                    </s.ItemContainer> 
-                    ) 
-            }    
+                <div style={{ display: 'flex', justifyContent: 'center',   flexDirection: 'column', alignItems: 'center' }}>
+                    {
+                        todos.map((item: IToDo) =>  count(item.tasks)!== 100   &&
+                             <s.ItemContainer key={item.id}>
+                                <TodoListItem
+                                    itemId={item.id}
+                                    title={item.title}
+                                    tasks={item.tasks}
+                                />
+                            </s.ItemContainer> ) 
+                    }   
+                </div>
             </s.secondDiv>
             <s.secondDiv>
-            <s.ProTitle>Done</s.ProTitle>
-            {
-                todos.map((item: IToDo) =>  count(item.tasks) === 100   &&
-                     <s.ItemContainer key={item.id}>
-                        <TodoListItem
-                            itemId={item.id}
-                            title={item.title}
-                            tasks={item.tasks}
-                        />
-                    </s.ItemContainer> 
-                    ) 
-            }    
+                <s.ProTitle>Done</s.ProTitle>
+                <div style={{ display: 'flex', justifyContent: 'center',   flexDirection: 'column', alignItems: 'center' }}>
+                    {
+                        todos.map((item: IToDo) =>  count(item.tasks) === 100   &&
+                             <s.ItemContainer key={item.id}>
+                                <TodoListItem
+                                    itemId={item.id}
+                                    title={item.title}
+                                    tasks={item.tasks}
+                                />
+                            </s.ItemContainer> ) 
+                    }
+                </div>
             </s.secondDiv>
-            
-
         </s.ToDoContainer>
     )
 }

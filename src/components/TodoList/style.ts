@@ -7,7 +7,6 @@ export const ToDoContainer = styled.div`
     justify-content: space-around;
     height: 100%;
     margin-top: 60px;
-    width: 100vw;
 `
 
 export const ItemContainer = styled.div`
@@ -22,8 +21,14 @@ export const secondDiv = styled.div`
 `
 
 export const ProTitle = styled.h4`
-display: flex;
-justify-content: center;
-color: #008CBA;
+    display: flex;
+    justify-content: center;
+    color: #008CBA;
+`
+export const TodosDiv = styled.div`
+    display: 'flex';
+    justify-content: 'center';
+    flex-direction: 'column';
+    align-items: 'center';
 `
 

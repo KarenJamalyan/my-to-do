@@ -4,6 +4,8 @@ export interface TodoState {
     loading: boolean;
     error: null | string;
     editId: null | string;
+    sortStatus: boolean;
+    filterValue: string;
 }
 
 export interface IToDo {
