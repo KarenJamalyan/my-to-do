@@ -1,4 +1,4 @@
-   const  count = (tasks:any) => {
+  const  count = (tasks:any) => {
     let doneCount = 0
         tasks.map((item:any) => {
             if(item.status === true){
@@ -9,3 +9,4 @@
 } 
 
 export default count;
+

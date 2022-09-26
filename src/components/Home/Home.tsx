@@ -1,7 +1,7 @@
 import React, {useEffect, useState } from 'react';
-import TodoLIst from '../components/TodoList/TodoList';
-import { useAppSelector } from '../hooks/redux';
-import { IToDo } from '../models/models';
+import TodoLIst from '../TodoList/TodoList';
+import { useAppSelector } from '../../hooks/redux';
+import { IToDo } from '../../models/models';
 
 
 

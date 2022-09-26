@@ -10,32 +10,32 @@ const TodoLIst: React.FC<{todos:IToDo[]}> = ({todos}) => {
    
     return (
         <s.ToDoContainer>
-            <s.firstDiv>
-            {
-                todos.map((item: IToDo) => {
-                    if(count(item.tasks)!= 100){
-                    return <s.ItemContainer key={item.id}>
-                                <TodoListItem
-                                    itemId={item.id}
-                                    title={item.title}
-                                    tasks={item.tasks}
-                                />
-                            </s.ItemContainer> }
-                    }) 
-            }    
-            </s.firstDiv>
             <s.secondDiv>
+                <s.ProTitle>in Process</s.ProTitle>
             {
-                todos.map((item: IToDo) => {
-                    if(count(item.tasks) == 100){
-                    return <s.ItemContainer key={item.id}>
-                                <TodoListItem
-                                    itemId={item.id}
-                                    title={item.title}
-                                    tasks={item.tasks}
-                                />
-                            </s.ItemContainer> }
-                    }) 
+                todos.map((item: IToDo) =>  count(item.tasks)!== 100   &&
+                     <s.ItemContainer key={item.id}>
+                        <TodoListItem
+                            itemId={item.id}
+                            title={item.title}
+                            tasks={item.tasks}
+                        />
+                    </s.ItemContainer> 
+                    ) 
+            }    
+            </s.secondDiv>
+            <s.secondDiv>
+            <s.ProTitle>Done</s.ProTitle>
+            {
+                todos.map((item: IToDo) =>  count(item.tasks) === 100   &&
+                     <s.ItemContainer key={item.id}>
+                        <TodoListItem
+                            itemId={item.id}
+                            title={item.title}
+                            tasks={item.tasks}
+                        />
+                    </s.ItemContainer> 
+                    ) 
             }    
             </s.secondDiv>
             
