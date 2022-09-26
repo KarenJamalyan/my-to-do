@@ -7,24 +7,13 @@ import { todoSlice } from '../../store/reducers/todoSilce';
 import { useAppDispatch, useAppSelector} from '../../hooks/redux';
 import EditTodo  from '../EditTodo/EditTodo';
 import AddTask from '../../components/AddTask/AddTask';
+import count from '../../utiles/count';
 
 
 const TodoListItem: React.FC<{itemId: string, title: string, tasks: ITask[]}> = ({itemId, title, tasks}) => {
     const {editId} = useAppSelector(state => state.todoReducer)
     const {deleteTodo, changingId} = todoSlice.actions
     const dispatch = useAppDispatch() 
-
-
-const  count = () => {
-    let doneCount = 0
-        tasks.map((item) => {
-            if(item.status === true){
-                doneCount = doneCount + 1 
-            }
-        })
-        return tasks.length === 0 ? '-- %' : `${ Math.floor(doneCount / tasks?.length * 100) } % `  
-} 
-   
 
     return (
     <>
@@ -34,7 +23,7 @@ const  count = () => {
             <s.TopDiv>
                 <s.Title> {title} </s.Title>
                 <s.Percent>
-                    {count()}
+                    {count(tasks) ? count(tasks) : '--' } %
                 </s.Percent>
                 <s.Buttons>
                     <span onClick={() => dispatch(changingId(itemId))}>

@@ -15,4 +15,10 @@ export const ItemContainer = styled.div`
     width: 300px;
     border: 2px solid #008CBA;
 `
+export const firstDiv = styled.div`
+    width: 50%;
+`
+export const secondDiv = styled.div`
+    width: 50%;
+`
 

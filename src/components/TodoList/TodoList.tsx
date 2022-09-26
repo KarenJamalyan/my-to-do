@@ -1,25 +1,45 @@
 import React from 'react';
 import { IToDo } from '../../models/models';
 import * as s from './style';
-import { useAppSelector } from '../../hooks/redux';
 import TodoListItem from '../TodoListItem/TodoListItem';
+import count from '../../utiles/count';
 
 
-const TodoLIst: React.FC = () => {
+const TodoLIst: React.FC<{todos:IToDo[]}> = ({todos}) => {
 
-    const { todos } = useAppSelector(state => state.todoReducer)
+   
     return (
         <s.ToDoContainer>
+            <s.firstDiv>
             {
-                todos.map((item: IToDo) => 
-                <s.ItemContainer key={item.id}>
-                    <TodoListItem
-                        itemId={item.id}
-                        title={item.title}
-                        tasks={item.tasks}
-                    />
-                </s.ItemContainer>)
-            }
+                todos.map((item: IToDo) => {
+                    if(count(item.tasks)!= 100){
+                    return <s.ItemContainer key={item.id}>
+                                <TodoListItem
+                                    itemId={item.id}
+                                    title={item.title}
+                                    tasks={item.tasks}
+                                />
+                            </s.ItemContainer> }
+                    }) 
+            }    
+            </s.firstDiv>
+            <s.secondDiv>
+            {
+                todos.map((item: IToDo) => {
+                    if(count(item.tasks) == 100){
+                    return <s.ItemContainer key={item.id}>
+                                <TodoListItem
+                                    itemId={item.id}
+                                    title={item.title}
+                                    tasks={item.tasks}
+                                />
+                            </s.ItemContainer> }
+                    }) 
+            }    
+            </s.secondDiv>
+            
+
         </s.ToDoContainer>
     )
 }
