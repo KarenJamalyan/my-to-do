@@ -3,6 +3,7 @@ import TodoLIst from '../TodoList/TodoList';
 import { useAppSelector, useAppDispatch } from '../../hooks/redux';
 import { IToDo } from '../../models/models';
 import { todoSlice } from '../../store/reducers/todoSilce';
+import Input from '../Input/Input';
 
 const HomePage = () => {
     const { todos, sortStatus, filterValue } = useAppSelector(state => state.todoReducer)
@@ -12,7 +13,7 @@ const HomePage = () => {
     const [data, setData] = useState<IToDo[]>([]);
 
     const handleSort = () => {
-        dispatch(changeSortStatus())
+        dispatch(changeSortStatus(true))
     }
 
     const filter = useCallback((keyword: string) => {
@@ -41,7 +42,7 @@ const HomePage = () => {
     return (
         <>
             <div>
-                <input value={filterValue} onChange={(e) => filter(e.target.value)} type="text" />
+                <Input value={filterValue} fooChange={filter} />
                 <button onClick={handleSort} > Sort A-Z </button>
             </div>
             <TodoLIst todos={data} />

@@ -66,8 +66,9 @@ export const todoSlice = createSlice({
                 }
             })
         },
-        changeSortStatus(state, action: PayloadAction) {
-            state.sortStatus = true
+        changeSortStatus(state, action: PayloadAction<boolean>) {
+            state.sortStatus = action.payload
+            state.todos = state.todos.sort((a, b) => a.title > b.title ? 1 : -1)
         },
         changeFilterValue(state, action: PayloadAction<string>) {
             state.filterValue = action.payload
